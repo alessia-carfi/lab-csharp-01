@@ -51,7 +51,7 @@ namespace ComplexAlgebra
             String result = Real == 0 ? "" : Real.ToString();
             if (Imaginary == 0)
                 return result;
-            result += Imaginary > 0 ? $"{(Real > 0 ? "+" : "")}{(Imaginary > 1 ? Imaginary : "")}i" : $"-{(Imaginary > 1 ? Imaginary : "")}i";
+            result += Imaginary > 0 ? $"{(Real != 0 ? "+" : "")}{(Imaginary > 1 ? Imaginary : "")}i" : $"-{(Imaginary > 1 ? Imaginary : "")}i";
             return result;
         }
 
@@ -75,6 +75,5 @@ namespace ComplexAlgebra
             result.Imaginary = num1.Imaginary - num2.Imaginary;
             return result;
         }
-
     }
 }
