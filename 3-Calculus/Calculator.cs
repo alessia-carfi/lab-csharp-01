@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using ComplexAlgebra;
 
 namespace Calculus
@@ -27,6 +30,52 @@ namespace Calculus
         public const char OperationPlus = '+';
         public const char OperationMinus = '-';
 
-        // TODO fill this class
+        private List<Complex> _numbers = new List<Complex>();
+        private List<char?> _operations = new List<char?>();
+        private char? _operation;
+
+        public Complex Value { get; set; }
+
+        public char? Operation {
+            get => _operation;
+            set 
+            {
+                _operation = value;
+                _operations.Add(Operation);
+                _numbers.Add(Value);
+                Value = null;
+            }
+        }
+
+        public Complex ComputeResult()
+        {
+            if (Value != null)
+                _numbers.Add(Value);
+
+            Complex result = _numbers.ElementAt(0);
+            for (int i = 1; i < _numbers.Count; i++)
+            {
+                Complex num = _numbers.ElementAt(i);
+                char? op = _operations.ElementAt(i-1);
+
+                result = op == OperationPlus ? result + num : result - num;
+            }
+            Reset();
+            Value = result;
+            return result;
+        }
+
+        public void Reset()
+        {
+            Value = null;
+            _operation = null;
+            _operations = new List<char?>();
+            _numbers = new List<Complex>();
+        }
+
+        public override string ToString()
+        {
+            return $"{(Value == null ? "null" : Value)}, {(Operation == null ? "null" : Operation)}";
+        }
     }
 }
