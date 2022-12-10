@@ -2,7 +2,6 @@ namespace Iterators
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     /// <summary>
     /// The runnable entrypoint of the exercise.
